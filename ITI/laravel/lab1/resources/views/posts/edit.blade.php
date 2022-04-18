@@ -1,8 +1,9 @@
-  @extends('layouts.app')
+@extends('layouts.app')
   @section('title')create @endsection
   @section('content')
-    <form method="POST" action="{{route('posts.store')}}">
+    <form method="POST" action="{{route('posts.update',['post'=>$post['id']])}}">
             @csrf
+            @method('put')
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Title</label>
                 <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
@@ -22,6 +23,6 @@
                 </select>
             </div>
 
-          <button class="btn btn-success">Create</button>
+          <button class="btn btn-success">update</button>
         </form>
       @endsection
