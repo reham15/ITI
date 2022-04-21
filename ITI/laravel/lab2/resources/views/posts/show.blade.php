@@ -68,8 +68,8 @@
                     @csrf
                     <button  class="my-3 mr-1.5   btn btn-success">Send</button>
                   
-</form>            
-                  <button type="button" onClick='console.log("textAreaExample.innerHTML")' class="my-3 mr-2 btn btn-danger">cancel</button>
+                    </form>            
+                  <button type="button" onClick="getElementById('textAreaExample').value=''" class="my-3 mr-2 btn btn-danger">cancel</button>
                   
                 </div>
                 </div>
@@ -84,26 +84,29 @@
 <section>
         <div class="card mt-5 ">
             <div class="card-header ">
-                Latest Comments
+                All Comments
             </div>
             <div class="card-body">
             @foreach($comments as $comment)
-            <div>
-              <div class="d-flex flex-row comment-row m-t-0">
+                
+              
                   
                     <div class="comment-text w-100">
                         <h6 class="font-medium">{{$comment->user->name}}</h6> <span class="m-b-15 d-block">{{$comment->body}} </span>
-                        <div class="comment-footer"> <span class="text-muted float-right">April 14, 2019</span>
+                        <div class="comment-footer"> <span class="text-muted float-right"> {{$comment->created_at}}</span>
                          <button type="button" class="btn btn-primary btn-sm">Edit</button>
                          <form  style="display:inline-block"  method="POST" action="{{route('comments.delete',['post' => $post['id'],'comment' => $comment['id']])}}">
                           @csrf
                              @method('delete')
                            <button  class="btn btn-danger btn-sm">Delete</button> 
-                           <form>
-                          </div>
-                    </div>
+</form>
+<textarea  class=" form-control mt-3 d-none " id="editComment" row="4" >  {{$comment->body}} </textarea>
+                                           
+                    
 </div>
 </div>
+                      
+                   <br>
                     @endforeach
                 
             </div> 
@@ -112,7 +115,5 @@
             
         </div>
  <section>
-
-
 
 @endsection
