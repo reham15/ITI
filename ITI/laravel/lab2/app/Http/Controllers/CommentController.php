@@ -17,8 +17,18 @@ class CommentController extends Controller
             'body' => $data['comment'],
             'commentable_id' =>$postId ,
             'commentable_type' => "App\Models\Post",
-            
+             'user_id'=>$data['comment_creator']
         ]);
+        return redirect()->route('posts.show',['post' => $postId]);
+         
+
+    }
+    public function delete($postId,$commentId)
+    { 
+     
+        
+       $post=Post::find($postId);
+      $comment=$post->comments()->find($commentId)->delete();
         return redirect()->route('posts.show',['post' => $postId]);
          
 

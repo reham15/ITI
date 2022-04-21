@@ -51,7 +51,7 @@ class PostController extends Controller
     public function show($postId){
   
 
-
+        $users = User::all();
     $post = Post::find($postId);
     
     $comments=$post->comments;
@@ -60,6 +60,7 @@ class PostController extends Controller
 
             'post'=>$post,
             'comments'=>$comments,
+            'users'=>$users,
         ]);
 
 

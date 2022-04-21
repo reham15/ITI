@@ -52,6 +52,15 @@
                 <form method="POST" action="{{route('comments.store',['post' => $post['id']])}}">
                   <textarea class="form-control " id="textAreaExample" name="comment" rows="4"></textarea>
                   
+                  <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">comment  Creator</label>
+                <select name="comment_creator" class="form-control">
+                      @foreach ($users as $user)
+                        <option value="{{$user->id}}"> {{$user->name}}</option>
+                        
+                      @endforeach
+                </select>
+            </div>
                 
                 <div class="d-flex justify-content-end ">
                   
@@ -59,12 +68,12 @@
                     @csrf
                     <button  class="my-3 mr-1.5   btn btn-success">Send</button>
                   
-                  <form>
-                  <button type="button" class="my-3 mr-2 btn btn-danger">cancel</button>
+</form>            
+                  <button type="button" onClick='console.log("textAreaExample.innerHTML")' class="my-3 mr-2 btn btn-danger">cancel</button>
                   
                 </div>
                 </div>
-            
+               
          
       
     
@@ -78,17 +87,23 @@
                 Latest Comments
             </div>
             <div class="card-body">
-                
+            @foreach($comments as $comment)
+            <div>
               <div class="d-flex flex-row comment-row m-t-0">
-                   @foreach($comments as $comment)
+                  
                     <div class="comment-text w-100">
-                        <h6 class="font-medium">James Thomas</h6> <span class="m-b-15 d-block">{{$comment->body}} </span>
+                        <h6 class="font-medium">{{$comment->user->name}}</h6> <span class="m-b-15 d-block">{{$comment->body}} </span>
                         <div class="comment-footer"> <span class="text-muted float-right">April 14, 2019</span>
                          <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                          
-                           <button type="button" class="btn btn-danger btn-sm">Delete</button> 
+                         <form  style="display:inline-block"  method="POST" action="{{route('comments.delete',['post' => $post['id'],'comment' => $comment['id']])}}">
+                          @csrf
+                             @method('delete')
+                           <button  class="btn btn-danger btn-sm">Delete</button> 
+                           <form>
                           </div>
                     </div>
+</div>
+</div>
                     @endforeach
                 
             </div> 
