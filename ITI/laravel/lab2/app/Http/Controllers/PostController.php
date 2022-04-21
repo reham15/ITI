@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     
     public function index()
-    {   $posts=Post::all();
+    {   $posts=Post::paginate(8);
 
 
         return view('posts.index',[
@@ -53,10 +53,13 @@ class PostController extends Controller
 
 
     $post = Post::find($postId);
-         
+    
+    $comments=$post->comments;
+       
         return view('posts.show',[
 
             'post'=>$post,
+            'comments'=>$comments,
         ]);
 
 
