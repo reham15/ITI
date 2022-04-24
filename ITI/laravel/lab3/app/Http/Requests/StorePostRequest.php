@@ -22,12 +22,12 @@ class StorePostRequest extends FormRequest
      * @return array
      */
     public function rules()
-    { //dd($this->all(),$post);
+    {
         return [
             'title' => ['required','min:3',Rule::unique('posts')->ignore($this->post)],
             'description' => ['required','min:5'],
-             'post_creator' => ['exists:users,id','required'],
-
+             'post_creator' => ['exists:users,id'],
+                  'avatar' => 'image|mimes:jpg,png|max:2048',
         ];
     }
 }

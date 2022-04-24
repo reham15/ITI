@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title')create @endsection
 @section('content')
-<form method="POST" action="{{route('posts.update',['post'=>$post['id']])}}">
+<form method="POST" action="{{route('posts.update',['post'=>$post['id']])}}" enctype="multipart/form-data">
   @csrf
   @method('put')
   <div class="mb-3">
@@ -32,6 +32,15 @@
     @error('post_creator')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1">Upload Image</label>
+        <input type="file" id="avatar" name="avatar" class="@error('avatar') is-invalid @enderror form-control">
+        @error('avatar')
+        <div class="alert alert-danger mt-1 mb-1">{{ $message }}
+        </div>
+        @enderror
+    </div>
 
   <button class="btn btn-success">update</button>
 </form>

@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -72,12 +73,13 @@ class PostController extends Controller
 
         $data = request()->all();
 
+        $path = Storage::putFile('avatars', $request->file('avatar'));
 
         Post::create([
             'title' => $data['title'],
             'description' => $data['description'],
             'user_id' => $data['post_creator'],
-
+            'path' => $path,
         ]);
 
 
@@ -86,15 +88,19 @@ class PostController extends Controller
 
     }
 
-    public function update($postId,StorePostRequest $request)
+    public function update($postId, StorePostRequest $request)
     {
-
+        $post = Post::find($postId);
+        Storage::delete($post->path);
+        $path = Storage::putFile('avatars', $request->file('avatar'));
         $data = request()->all();
 
         Post::where('id', $postId)
             ->update(['title' => $data['title'],
                 'description' => $data['description'],
-                'user_id' => $data['post_creator'],]);
+                'user_id' => $data['post_creator'],
+                'path' => $path,
+            ]);
 
 
         return redirect()->route('posts.index');
@@ -104,6 +110,8 @@ class PostController extends Controller
 
     public function delete($postId)
     {
+        $post = Post::find($postId);
+        Storage::delete($post->path);
 
         $data = request()->all();
 

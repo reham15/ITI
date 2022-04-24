@@ -37,6 +37,20 @@
   </div>
 </div>
 
+<div class="card mt-5">
+    <div class="card-header">
+        Post image
+    </div>
+    <div class="card-body">
+
+        <div>
+            <image  style="width:200px;" src='{{asset("storage/app/$post->path")}}'></image>
+
+        </div>
+
+    </div>
+</div>
+
 
 <section>
   <div class="card mt-5 text-dark">
