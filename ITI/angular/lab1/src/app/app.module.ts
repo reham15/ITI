@@ -9,15 +9,20 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,StudentComponent, DepartmentComponent, HeaderComponent, FooterComponent, SidebarComponent
-  ],
+    declarations: [
+        AppComponent, StudentComponent, DepartmentComponent, HeaderComponent, FooterComponent, SidebarComponent
+    ],
 
 
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule
+    ],
+    providers: [],
+    exports: [
+        FooterComponent,
+        SidebarComponent,
+        DepartmentComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

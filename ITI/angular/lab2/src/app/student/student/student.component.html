@@ -1,0 +1,66 @@
+<section class="card-body">
+  <div class="card-body">
+    <div class="form-control">
+      <input #id type="text" placeholder="enter id">
+    </div>
+    <div class="form-control">
+      <input #name type="text" placeholder="enter name">
+    </div>
+    <div class="form-control">
+      <input #age type="text" placeholder="enter age">
+    </div>
+    <div class="form-control">
+      <input #dep type="text" placeholder="enter department no">
+    </div>
+    <div class="mt-2">
+      <button class="btn btn-primary" (click)="add(id.value,name.value,age.value,dep.value)">create</button>
+    </div>
+  </div>
+  <table class="table  table-dark">
+    <thead class="table-primary ">
+    <th  > Id</th>
+    <th> name</th>
+    <th> age</th>
+    <th> department</th>
+    <th> actions</th>
+
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let student of students" >
+      <td #studentid> {{student.id}}</td>
+      <td> {{student.name}}</td>
+      <td> {{student.age}}</td>
+      <td> {{student.departmentNo}}</td>
+      <td>
+        <button class="btn btn-info m-2" (click)="show(studentid.innerHTML)">show</button>
+        <button class="btn btn-success m-2" (click)="delete(studentid.innerHTML)">delete</button>
+        <button class="btn btn-danger m-2" (click)="edit(studentid.innerHTML)">edit</button>
+
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="student!=null">
+    student info:
+
+    <div>id: {{student.id}}</div>
+    <div> name:{{student.name}}</div>
+    <div>age:{{student.age}}</div>
+    <div> department no:{{student.departmentNo}}</div>
+
+
+  </div>
+
+  <div *ngIf="idToEdit!=null" class="card-body">
+    <input #editedId type="text" class="form-control" placeholder="enter id">
+    <input #editedName type="text" class="form-control" placeholder="enter name">
+    <input #editedAge type="text" class="form-control" placeholder="enter age">
+    <input #editedDep type="text"  class="form-control" placeholder="enter dept no">
+    <button class="btn btn-primary mt-2" (click)="update(editedId.value,editedName.value,editedAge.value,editedDep.value)">
+      update
+    </button>
+  </div>
+</section>
