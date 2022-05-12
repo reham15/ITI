@@ -4,12 +4,16 @@ import { StudentComponent } from './student/student.component';
 
 
 
+
 @NgModule({
   declarations: [
-    StudentComponent
+    StudentComponent,
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+
+
   ],
   exports:[
     StudentComponent
