@@ -1,4 +1,6 @@
-<div class="card m-20">
+
+<div class="mt-5 mx-auto" style="width: 90%">
+  <div class="card">
 <div   *ngIf="addproduct==true">
   <div class="form-control">
     <input #id type="text" placeholder="enter id">
@@ -103,4 +105,5 @@
   <app-star (newItemEvent)="rate($event)"></app-star>
   <input  #editedimage type="text" placeholder="enter image name" >
   <button  class="btn btn-primary mt-2"(click)="update(editedId.value,editedName.value,editedcode.value,editedprice.value,editedimage.value)">update </button>
+</div>
 </div>
