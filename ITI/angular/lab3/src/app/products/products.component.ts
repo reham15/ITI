@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Product} from "../Models/product";
-
+declare var window: any;
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -8,10 +8,9 @@ import {Product} from "../Models/product";
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+
+
  addproduct=false;
  Rate:number=0;
   product:Product|null=null;
@@ -20,6 +19,11 @@ export class ProductsComponent implements OnInit {
  showImage=false;
 availableDate:Date=new Date();
 filter:string='';
+  formModal: any;
+  constructor() { }
+  ngOnInit(): void {
+
+  }
 
   add(id:string,name:string,code:string,price:string,image:string) {
 
@@ -89,6 +93,15 @@ filter:string='';
   showImages()
   {
     this.showImage=true;
+  }
+
+
+
+  openFormModal() {
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById('myModal')
+    );
+   console.log( this.formModal);
   }
 
 

@@ -1,7 +1,7 @@
 
 <div class="mt-5 mx-auto" style="width: 90%">
   <div class="card">
-<div   *ngIf="addproduct==true">
+<div  class="modal fade"  id="myModal">
   <div class="form-control">
     <input #id type="text" placeholder="enter id">
   </div>
@@ -73,7 +73,7 @@
   </tbody>
 </table>
 </div>
-<button  class="btn btn-info m-2"(click)="addproduct=true;">add product</button>
+<button  class="btn btn-info m-2"(click)="openFormModal()">add product</button>
 <div *ngIf="product!=null">
  product info:
 
