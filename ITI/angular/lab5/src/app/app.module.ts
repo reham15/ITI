@@ -5,15 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DepartmentService} from "./department.service";
 import {DepartmentModule} from "./department/Department.module";
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import {CoreModule} from "./core/core.module";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DepartmentModule,
+    CoreModule,
   ],
   providers: [DepartmentService],
   bootstrap: [AppComponent]

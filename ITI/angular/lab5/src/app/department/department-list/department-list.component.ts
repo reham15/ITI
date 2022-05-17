@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Department} from "../../models/department";
 import {DepartmentService} from "../../department.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-department-list',
@@ -10,7 +11,7 @@ import {DepartmentService} from "../../department.service";
 })
 export class DepartmentListComponent implements OnInit {
  departments:Department[]=[];
-  constructor(public depart: DepartmentService) {
+  constructor(public depart: DepartmentService,private router: Router) {
 
 
   }
@@ -18,7 +19,19 @@ export class DepartmentListComponent implements OnInit {
   ngOnInit(): void {
     this.departments=this.depart.showList();
   }
+  showRedirect(iD:string)
+  { let id=Number(iD);
+   this.router.navigate(["departments",id]);
+  }
+  editRedirect(iD:string)
+  { let id=Number(iD);
+    this.router.navigate(["departments/edit",id]);
+  }
 
+  delete(id:string)
+  {
+    this.depart.delete(id);
 
+  }
 
 }

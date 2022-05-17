@@ -6,19 +6,66 @@ import {Department} from "./models/department";
 // })
 export class DepartmentService {
   departments:Department[]=[];
+  department:Department=new Department(0,'','');
   constructor() {
    let department=new Department(1,"jjj","jhj");
    this.departments.push(department);
 
   }
 
- public showList()
+ public showList():Department[]
   {
     return this.departments;
   }
   public add(depart:Department)
   {
     this.departments.push(depart);
+  }
+  public showOne(id:string|null)
+  {
+    this.departments.forEach((department)=>{
+
+      if(department.id===Number(id))
+      {
+       this.department=department;
+      }
+
+
+
+
+    });
+    return this.department;
+  }
+
+  update(id:number,depart:Department)
+
+  {this.departments.forEach((department)=>{
+
+    if(department.id===Number(id))
+    {
+
+      department.deptName=depart.deptName
+      department.location=depart.location;
+
+
+
+    }
+
+
+  });}
+
+  delete(id:string)
+  {
+    this.departments.forEach((department,index)=>{
+
+      if(department.id===Number(id))
+      {
+        this.departments.splice(index,1);
+      }
+
+
+    });
+
   }
 
 }
