@@ -10,10 +10,9 @@ import {CalendarModule} from 'primeng/calendar';
 import {ButtonModule} from 'primeng/button';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {FormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -34,6 +33,7 @@ import {SharedModule} from "./shared/shared.module";
     CheckboxModule,
     BrowserAnimationsModule,
     SharedModule,
+    NgbModule,
 
 
   ],
