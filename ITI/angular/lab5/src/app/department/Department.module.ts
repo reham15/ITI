@@ -9,6 +9,8 @@ import { DepartmentEditComponent } from './department-edit/department-edit.compo
 import {HomeComponent} from "../home/home.component";
 import {AboutComponent} from "../about/about.component";
 import {NotFoundComponent} from "../not-found/not-found.component";
+import { CustomFormsModule } from 'ng2-validation'
+import {FormsModule} from "@angular/forms";
 
 
 const routes: Routes = [
@@ -30,11 +32,13 @@ const routes: Routes = [
     DepartmentShowComponent,
     DepartmentEditComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-      RouterModule.forChild(routes)
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    CustomFormsModule,
+    RouterModule.forChild(routes),
+    FormsModule
+  ],
   exports:[
     DepartmentAddComponent,
     DepartmentListComponent,
