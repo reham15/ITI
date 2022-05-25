@@ -1,0 +1,26 @@
+<div class=" card-body w-75 mx-auto ">
+  <form #dept="ngForm">
+  <div class="mb-3">
+    <input  [(ngModel)]="department.id" #id="ngModel" type="text" required placeholder="enter id" name="id" class="form-control">
+    <p *ngIf="id.errors?.['required']"> id is required</p>
+  </div>
+  <div class="mb-3">
+    <input  [(ngModel)]="department.name" #name="ngModel" type="text"  required placeholder="enter  department name" name="name" class="form-control">
+    <p *ngIf="name.errors?.['required']&& name.touched"> name is required</p>
+  </div>
+  <div class="mb-3">
+    <input  #loc type="text" placeholder="enter location"  class="form-control">
+  </div>
+
+
+  <div>
+    <button  class="btn btn-primary mt-2"(click)="add(id.value,name.value,loc.value)" [disabled]="dept.invalid" >create </button>
+  </div>
+  </form>
+
+<div  *ngIf="errors!=null">
+  <div  *ngFor=" let error of errors">
+    <p  class="text-danger " > error: {{error}}</p>
+</div>
+</div>
+</div>
