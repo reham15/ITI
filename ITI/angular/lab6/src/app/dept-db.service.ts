@@ -31,27 +31,36 @@ export class DeptDbService {
     return this.http.put("http://127.0.0.1:8000/api/departments/" + id, depart);
 
   }
-  handleError(error:any) {
-    let errorMessage :any = [];
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-
-
-
-      for(var item in error.error.errors){
-        // this condition is required to prevent moving forward to prototype chain
-        if( error.error.errors.hasOwnProperty(item)){
-          errorMessage.push( error.error.errors[item]);
-        }
-      }
-      //errorMessage = `Error Code: ${error.status}\nMessage: ${ Object.values(error.error.errors)}`;
+  handleError(response: any) {
+    // const {error} = response;
+    const error = response.error;
+    const errors = error.errors;
+    let errorsArray: any[] = [];
+    for (const key in errors) {
+      errorsArray = errorsArray.concat(errors[key]);
     }
-    console.log(errorMessage);
+    console.log(errorsArray)
+   // let errorMessage :any = [];
+    // if (error.error instanceof ErrorEvent) {
+    //   // client-side error
+    //   errorMessage = `Error: ${error.error.message}`;
+    // } else {
+    //   // server-side error
+    //
+    //
+    //
+    //   for(var item in error.error.errors){
+    //     // this condition is required to prevent moving forward to prototype chain
+    //     if( error.error.errors.hasOwnProperty(item)){
+    //       errorMessage.push( error.error.errors[item]);
+    //     }
+    //   }
+    //   //errorMessage = `Error Code: ${error.status}\nMessage: ${ Object.values(error.error.errors)}`;
+    // }
+    // console.log(errorMessage);
     return throwError(() => {
-      return errorMessage;
+      return errorsArray;
+
     });
   }
 }
