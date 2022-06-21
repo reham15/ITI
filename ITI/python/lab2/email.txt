@@ -1,0 +1,1 @@
+decorator, getter and setter, abstract class, static and class method again
